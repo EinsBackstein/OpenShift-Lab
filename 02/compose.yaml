@@ -1,0 +1,7 @@
+services:
+  site:
+    image: openshift-custom-image-deployment:local
+    build: .
+    ports:
+      - "127.0.0.1:8088:8080"
+    restart: unless-stopped

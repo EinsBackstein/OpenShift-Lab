@@ -1,0 +1,35 @@
+:root {
+  font-family: "Red Hat Display", "Arial", sans-serif;
+  color: #fff;
+  background: #151515;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+main {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  border-top: 0.5rem solid #ee0000;
+}
+
+h1 {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+::selection { background: #ee0000; color: #fff; }
