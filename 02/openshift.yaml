@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openshift-custom-image-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openshift-custom-image-deployment
+  template:
+    metadata:
+      labels:
+        app: openshift-custom-image-deployment
+    spec:
+      containers:
+        - name: site
+          image: ghcr.io/einsbackstein/openshift-custom-image-deployment:1.0.0
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openshift-custom-image-deployment
+spec:
+  selector:
+    app: openshift-custom-image-deployment
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: openshift-custom-image-deployment
+spec:
+  to:
+    kind: Service
+    name: openshift-custom-image-deployment
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
